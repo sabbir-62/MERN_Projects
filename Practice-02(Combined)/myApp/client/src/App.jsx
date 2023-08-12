@@ -1,10 +1,11 @@
 import './App.css'
+import HomePage from './pages/HomePage';
 
 
 const App = () => {
     return (
         <div>
-            <h1>This is Mosh</h1>
+            <HomePage/>
         </div>
     );
 };

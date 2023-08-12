@@ -43,7 +43,7 @@ app.use(limiter);
 //Frontend connection
 app.use(express.static('client/dist'));
 app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+    req.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
 })
 
 
