@@ -37,6 +37,23 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //database connection
+const uri = "mongodb+srv://<username>:<password>@cluster0.cpgrk48.mongodb.net/CRUD";
+const options = {
+    user: "sabbir",
+    pass: "sabbir5313",
+    autoIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  };
+  
+  mongoose.connect(uri, options)
+  .then(() => {
+    console.log("Successfully connected to MongoDB Atlas");
+  })
+  .catch(error => {
+    console.error("Error connecting to MongoDB Atlas:", error);
+  });
+
 
 
 
