@@ -1,11 +1,17 @@
 import './App.css'
-import HomePage from './pages/HomePage';
+import CreatePage from './pages/CreatePage';
+import ReadPage from './pages/ReadPage';
+import UpdatePage from './pages/UpdatePage';
+import Common from './components/Common/Common';
 
 
 const App = () => {
     return (
         <div>
-            <HomePage/>
+            <Common/>
+            <CreatePage/>
+            <ReadPage/>
+            <UpdatePage/>
         </div>
     );
 };

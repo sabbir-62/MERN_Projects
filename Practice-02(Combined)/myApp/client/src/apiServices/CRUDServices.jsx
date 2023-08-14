@@ -3,7 +3,7 @@ import axios from "axios"
 
 //Create
 export const Create = async(productName, productID, img, unitPrice, quantity, totalPrice) => {
-    let url = "/api/v1/createProduct";
+    let url = "http://localhost:8000/api/v1/createProduct";
     let data = {
         productName: productName,
         productID: productID,
@@ -31,7 +31,7 @@ export const Create = async(productName, productID, img, unitPrice, quantity, to
 
 //Read
 export const Read = async() => {
-    let url = "/api/v1/readProduct"
+    let url = "http://localhost:8000/api/v1/readProduct";
     return await axios.get(url).then((res) => {
         if(res.status == 200){
             return res.data['data'];
@@ -49,7 +49,7 @@ export const Read = async() => {
 
 //Update
 export const Update = async(id, productName, productID, img, unitPrice, quantity, totalPrice) => {
-    let url = "/api/v1/updateProduct" + id;
+    let url = "http://localhost:8000/api/v1/updateProduct"; + id;
     let data = {
         productName: productName,
         productID: productID,
@@ -77,7 +77,7 @@ export const Update = async(id, productName, productID, img, unitPrice, quantity
 
 //Delete
 export const Delete = async(id) => {
-    let url = "/api/v1/deleteProduct" + id;
+    let url = "http://localhost:8000/api/v1/deleteProduct"; + id;
     return await axios.get(url).then((res) => {
         if(res.status == 200){
             return true;
