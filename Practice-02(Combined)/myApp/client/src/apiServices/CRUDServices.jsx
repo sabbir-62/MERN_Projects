@@ -1,24 +1,94 @@
 import axios from "axios"
 
 
-export const Create = () => {
-    let url = "/api/v1/createProduct"
-    axios.post().then().catch()
+//Create
+export const Create = async(productName, productID, img, unitPrice, quantity, totalPrice) => {
+    let url = "/api/v1/createProduct";
+    let data = {
+        productName: productName,
+        productID: productID,
+        img: img,
+        unitPrice: unitPrice,
+        quantity: quantity,
+        totalPrice: totalPrice
+    }
+    return await axios.post(url, data)
+    .then((res) => {
+        if(res.status == 200){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        return false;
+    })
 }
 
-export const Read = () => {
+
+
+//Read
+export const Read = async() => {
     let url = "/api/v1/readProduct"
-    axios.get().then().catch()
+    return await axios.get(url).then((res) => {
+        if(res.status == 200){
+            return res.data['data'];
+        }
+        else{
+            return false;
+        }
+    }).catch((err) => {
+        console.log(err);
+        return false;
+    })
 }
 
-export const Update = (id) => {
+
+
+//Update
+export const Update = async(id, productName, productID, img, unitPrice, quantity, totalPrice) => {
     let url = "/api/v1/updateProduct" + id;
-    axios.patch().then().catch()
+    let data = {
+        productName: productName,
+        productID: productID,
+        img: img,
+        unitPrice: unitPrice,
+        quantity: quantity,
+        totalPrice: totalPrice
+    }
+    return await axios.post(url, data)
+    .then((res) => {
+        if(res.status == 200){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        return false;
+    })
 }
 
-export const Delete = (id) => {
+
+
+//Delete
+export const Delete = async(id) => {
     let url = "/api/v1/deleteProduct" + id;
-    axios.get().then().catch()
+    return await axios.get(url).then((res) => {
+        if(res.status == 200){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }).catch((err) => {
+        console.log(err);
+        return false;
+    })
 }
 
 // export default {Create, Read, Update, Delete}
