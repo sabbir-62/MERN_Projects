@@ -55,6 +55,8 @@ const options = {
   });
 
 
+  //routing
+app.use('/api/v1', router);
 
 
 //Frontend connection
@@ -63,9 +65,5 @@ app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
 })
 
-
-
-//routing
-app.use('/api/v1', router);
 
 module.exports = app;
