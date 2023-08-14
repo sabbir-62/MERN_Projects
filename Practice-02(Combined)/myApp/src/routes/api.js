@@ -7,7 +7,7 @@ router.post("/createProduct", productController.createProduct);
 
 router.get("/readProduct", productController.readProduct);
 
-router.post("/updateProduct/:id", productController.updateProduct);
+router.patch("/updateProduct/:id", productController.updateProduct);
 
 router.get("/deleteProduct/:id", productController.deleteProduct);
 
