@@ -49,7 +49,7 @@ export const Read = async() => {
 
 //Update
 export const Update = async(id, productName, productID, img, unitPrice, quantity, totalPrice) => {
-    let url = "http://localhost:8000/api/v1/updateProduct"; + id;
+    let url = "http://localhost:8000/api/v1/updateProduct/" + id;
     let data = {
         productName: productName,
         productID: productID,
@@ -77,7 +77,7 @@ export const Update = async(id, productName, productID, img, unitPrice, quantity
 
 //Delete
 export const Delete = async(id) => {
-    let url = "http://localhost:8000/api/v1/deleteProduct"; + id;
+    let url = "http://localhost:8000/api/v1/deleteProduct/" + id;
     return await axios.get(url).then((res) => {
         if(res.status == 200){
             return true;

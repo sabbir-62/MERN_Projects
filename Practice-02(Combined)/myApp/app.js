@@ -30,11 +30,13 @@ app.use(express.json());
 
 //Rate Limiter Implementation
 const limiter = rateLimit({
-    windowMs: 1 * 60 * 1000,    // 1 minute
+    windowMs: 1 * 60 * 100,    // 1 minute
     max: 10,
     message: 'Too many request from this IP. Please try again later'
 })
 app.use(limiter);
+
+
 
 //database connection
 const uri = "mongodb+srv://<username>:<password>@cluster0.cpgrk48.mongodb.net/CRUD";
