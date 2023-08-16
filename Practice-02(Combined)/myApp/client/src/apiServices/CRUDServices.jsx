@@ -50,8 +50,9 @@ export const Read = async() => {
 //Update
 export const Update = async(id, productName, productID, img, unitPrice, quantity, totalPrice) => {
     let url = "http://localhost:8000/api/v1/updateProduct/" + id;
+   
     let data = {
-        productName: productName,
+        productName: productName.length,
         productID: productID,
         img: img,
         unitPrice: unitPrice,

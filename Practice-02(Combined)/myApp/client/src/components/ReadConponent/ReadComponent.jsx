@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {Delete, Read} from "../../apiServices/CRUDServices";
 import Loader from "../Common/Loader";
 import cogoToast from 'cogo-toast';
+import { Link } from "react-router-dom";
 
 
 const ReadComponent = () => {
@@ -42,12 +43,6 @@ const ReadComponent = () => {
     }
 
 
-    let updateItem = (id) => {
-        // Navigate to the UpdatePage and pass the id as a parameter
-        history.push(`/update/${id}`);
-    }
-
-
    if(dataList.length > 0){
     return (
         <div>
@@ -76,7 +71,8 @@ const ReadComponent = () => {
                                     <td>{item.totalPrice}</td>
                                     <td>
                                         <button onClick={deleteItem.bind(this, item._id)} className="btn btn-danger">Delete</button>
-                                        <button onClick={updateItem.bind(this, item._id)} className="btn btn-danger m-2">Update</button>
+                                        {/* <button onClick={updateItem.bind(this, item._id)} className="btn btn-danger m-2">Update</button> */}
+                                        <Link to={`/update/${item._id}`} className="btn btn-danger m-2">Update</Link>
                                     </td>
                                 </tr>
                             )
@@ -103,6 +99,7 @@ export default ReadComponent;
 // import { Delete, Read } from "../../apiServices/CRUDServices";
 // import Loader from "../Common/Loader";
 // import cogoToast from "cogo-toast";
+// import UpdatePage from './../../pages/UpdatePage';
 
 // const ReadComponent = () => {
 //   const [dataList, setDataList] = useState([]);

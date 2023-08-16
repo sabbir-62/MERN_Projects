@@ -1,20 +1,29 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+
+import { useParams } from 'react-router-dom';
+
+import UpdateComponent from '../components/UpdateComponent/UpdateComponent'
+
+// const UpdatePage = () => {
+//   // const { id } = useParams();
+//   <div>alisfh</div>
+//   // <UpdateComponent/>
+// };
+
+// export default UpdatePage;
+
 
 const UpdatePage = () => {
-  // Get the id parameter from the URL
   const { id } = useParams();
-
-  // Now you can use the id in your component
-  // For example, you can fetch data related to this id
 
   return (
     <div>
-      <h1>Update Page</h1>
-      <p>Updating item with ID: {id}</p>
-      {/* Your update form and logic go here */}
+      <UpdateComponent id={id}/>
     </div>
   );
 };
 
 export default UpdatePage;
+
+
+
+ 
