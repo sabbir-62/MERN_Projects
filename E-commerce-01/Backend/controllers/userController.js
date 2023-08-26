@@ -1,8 +1,8 @@
-const userData = require('../models/userData')
+const userData = require('../models/userModel')
 
 
 //Write a getUser function ans send response with user Data
-exports.getUser = ((req, res) => {
+exports.getUser = ((req, res, next) => {
    try{
     res.status(200).send({
         userData
