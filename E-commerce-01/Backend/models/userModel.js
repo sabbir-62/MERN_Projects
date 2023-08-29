@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
-const image = require('../public/users/user.png');
+
 
 
 const userSchema = new mongoose.Schema({
@@ -27,8 +27,7 @@ const userSchema = new mongoose.Schema({
         set: (v) => bcrypt.hashSync(v, bcrypt.genSaltSync(10))
     },
     image: {
-        type: String,
-        default: image
+        type: String
     },
     address: {
         type: String,
