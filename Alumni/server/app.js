@@ -4,12 +4,14 @@ const app = express();
 
 require('dotenv').config();
 
+app.use(express.json());
+
 const DB = process.env.DATABASE
 
 
-app.use('/', (req, res) => {
-    res.send("Hello Sabbir");
-})
+const router = require('./routes/api');
+
+app.use('/', router)
 
 mongoose.connect(DB)
     .then(() => {
