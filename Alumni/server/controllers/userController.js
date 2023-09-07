@@ -1,5 +1,7 @@
 const User = require('../models/userModel');
 
+
+//user registration
 exports.userRegistration = async(req, res) => {
     const {name, email, phone, role, password, confirmPassword} = req.body;
     
@@ -10,15 +12,22 @@ exports.userRegistration = async(req, res) => {
                 message: "All the fields are required"
             })
         }
-
-        const existingUser = await User.findOne({email});
-    
-        if(existingUser){
+        
+        if(password !== confirmPassword){
             return res.status(400).json({
                 success: false,
-                message: "User with this email already exists",
-            });
+                message: "Password and Confirm Password are not matched"
+            })
         }
+
+        await User.findOne({email, password});
+    
+        // if(existingUser){
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: "Email is already exist",
+        //     });
+        // }
     
         const user = await User.create({
             name,
@@ -59,3 +68,36 @@ exports.userRegistration = async(req, res) => {
     }
 }
 
+
+
+//user login
+exports.userLogin = async(req, res) => {
+    const {email, password} = req.body;
+    try{
+        if(!email || !password){
+            return res.status(400).json({
+                success: false,
+                message: 'Email and Password are required'
+            })
+        }
+
+        const existingUser = await User.findOne({email, password});
+
+        if(!existingUser){
+            return res.status(400).json({
+                success: false,
+                message: 'User does not exist'
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            message: existingUser
+        })
+    }
+    catch(err){
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+}
