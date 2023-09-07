@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please add confirm password"],
         minLength: [6, "Password must be up to 6 characters"]
     }
+},
+{
+    timestamps: true,
+    versionKey: false
 })
 
 
