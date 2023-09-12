@@ -88,7 +88,7 @@ exports.userLogin = async(req, res) => {
         if(!matchPassword){
             return res.status(404).json({
                 success: false,
-                message: 'Not found'
+                message: 'Invalid Credential'
             })
         }
         return res.status(200).json({
@@ -99,7 +99,7 @@ exports.userLogin = async(req, res) => {
     catch(err){
         res.status(500).json({
             success: false,
-            message: "Something went wrong"
+            message: 'Internal server problem'
         })
     }
 }
