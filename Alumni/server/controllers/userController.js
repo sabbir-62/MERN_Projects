@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
 
+
 //user registration
 exports.userRegistration = async(req, res) => {
     const {name, email, phone, role, password, confirmPassword} = req.body;
@@ -81,9 +82,11 @@ exports.userLogin = async(req, res) => {
                 message: 'Email and Password are required'
             })
         }
+        
 
         const existingUser = await User.findOne({email});
         const matchPassword = await bcrypt.compare(password, existingUser.password);
+
 
         if(!matchPassword){
             return res.status(404).json({
@@ -91,6 +94,10 @@ exports.userLogin = async(req, res) => {
                 message: 'Invalid Credential'
             })
         }
+
+        res.cookie("jsontoken", existingUser.token, {
+            httpOnly: true
+        })
         return res.status(200).json({
             success: true,
             message: existingUser
