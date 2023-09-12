@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
 
 //user registration
@@ -81,12 +82,13 @@ exports.userLogin = async(req, res) => {
             })
         }
 
-        const existingUser = await User.findOne({email, password});
+        const existingUser = await User.findOne({email});
+        const matchPassword = await bcrypt.compare(password, existingUser.password);
 
-        if(!existingUser){
-            return res.status(400).json({
+        if(!matchPassword){
+            return res.status(404).json({
                 success: false,
-                message: 'User does not exist'
+                message: 'Not found'
             })
         }
         return res.status(200).json({
@@ -97,7 +99,7 @@ exports.userLogin = async(req, res) => {
     catch(err){
         res.status(500).json({
             success: false,
-            message: "Internal server error"
+            message: "Something went wrong"
         })
     }
 }
