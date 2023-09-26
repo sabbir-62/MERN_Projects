@@ -1,0 +1,38 @@
+.registration{
+    height: 94vh;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.form{
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.form-group{
+    margin-bottom: 30px;
+}
+
+.input-field{
+    width: 40vw;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+}
+
+.button {
+    display: flex;
+   justify-content: space-between;
+}
+
+.btn{
+    width: 20%;
+    text-align: center;
+}
