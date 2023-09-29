@@ -1,9 +1,9 @@
-
+import './homePage.css'
 
 const HomePage = () => {
     return (
-        <div>
-            This is home page
+        <div className='home'>
+            <h1>This is Alumni Association</h1>
         </div>
     );
 };
