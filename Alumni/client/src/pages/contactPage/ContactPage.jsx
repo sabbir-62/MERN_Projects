@@ -3,19 +3,19 @@ import './contactPage.css';
 const ContactPage = () => {
     return (
         <div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-3 offset-lg-1">
+            <div className="container contacts">
+                <div className="row contact-list">
+                    <div className="col-md-3 contact">
                         <p><i className="zmdi zmdi-phone"></i></p>
                          <p>Phone</p>
                          <a href="">+8801729892494</a>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 contact ">
                         <p><i className="zmdi zmdi-email"></i></p>
                          <p>Email</p>
                          <a href="">sabbirhstuece@gmail.com</a>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 contact ">
                         <p><i className="zmdi zmdi-pin"></i></p>
                          <p>Address</p>
                          <a href="">Birol, Dinajpur</a>

@@ -2,14 +2,14 @@
     height: 94vh;
 }
 
-.container{
+.registration-card{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.form{
+.registration-form{
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);

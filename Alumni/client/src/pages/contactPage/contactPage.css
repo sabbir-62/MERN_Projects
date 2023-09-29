@@ -1,24 +1,23 @@
-.row{
-    width: 100%;
-    margin-top: 5rem;
-    justify-content: space-between;
-}
-.col-md-3{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin: 30px;
-    padding: 30px 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-}
-
 *{
     margin: 0;
     padding: 0;
 }
 
+.contact-list{
+    width: 100%;
+    justify-content: space-between;
+}
+.contact{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin-top: 8rem;
+}
 p{
     margin: 0;
     padding: 0;
@@ -29,15 +28,19 @@ a{
 }
 
 @media only screen and (max-width: 1200px){
-	.row{
+	.contact-list{
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
     }
-    .col-md-3{
+    .contact{
         width: 100%;
         display: flex;
-        margin-left: -1px;
+        margin-left: 13px;
+        margin-top: 2rem;
+    }
+    .contact:nth-child(1){
+        margin-top: 6rem;
     }
 }
 
@@ -84,7 +87,7 @@ a{
     }
 
     .content{
-        width: 80%;
+        width: 90%;
     }
 
 	.input-form{

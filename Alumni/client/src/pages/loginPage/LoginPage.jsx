@@ -7,8 +7,8 @@ const LoginPage = () => {
     }
     return (
         <div className="registration">
-            <div className="container">
-                <form className="form" action="" onSubmit={handleSubmit}>
+            <div className="container login">
+                <form className="login-form" action="" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <lebel htmlFor="email"></lebel>
                         <input type="text" className='input-field' placeholder="Enter Your Email"/>
