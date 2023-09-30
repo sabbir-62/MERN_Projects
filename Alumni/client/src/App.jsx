@@ -8,6 +8,7 @@ import AboutPage from './pages/aboutPage/AboutPage';
 import ContactPage from './pages/contactPage/ContactPage';
 import LoginPage from './pages/loginPage/LoginPage';
 import RegistrationPage from './pages/registrationPage/RegistrationPage';
+import ErrorPage from './pages/errorPage/ErrorPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route exact path='/contact' element={<ContactPage />}></Route>
       <Route exact path='/login' element={<LoginPage />}></Route>
       <Route exact path='/registration' element={<RegistrationPage />}></Route>
+      <Route exact path='*' element={<ErrorPage />}></Route>
     </Routes>
    </Router>
   )     
