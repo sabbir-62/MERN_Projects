@@ -10,15 +10,15 @@ const LoginPage = () => {
             <div className="container login">
                 <form className="login-form" action="" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <lebel htmlFor="email"></lebel>
+                        <label htmlFor="email"></label>
                         <input type="text" className='input-field' placeholder="Enter Your Email"/>
                     </div>
                     <div className="form-group">
-                        <lebel htmlFor="password"></lebel>
+                        <label htmlFor="password"></label>
                         <input type="text" className='input-field' placeholder="Enter Your Password"/>
                     </div>
                     <div className="form-group">
-                        <lebel htmlFor="cpassword"></lebel>
+                        <label htmlFor="cpassword"></label>
                         <input type="text" className='input-field' placeholder="Enter Your Confirm Password"/>
                     </div>
                     <div className="form-group">

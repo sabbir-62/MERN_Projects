@@ -22,7 +22,12 @@ exports.userRegistration = async(req, res) => {
             })
         }
 
-        await User.findOne({email, password});
+        const findUser = await User.findOne({email});
+        if(findUser){
+            return res.status(400).json({
+                message: "Email is already exist"
+            })
+        }
     
         // if(existingUser){
         //     return res.status(400).json({
@@ -54,7 +59,7 @@ exports.userRegistration = async(req, res) => {
         }
     }
     catch (error) {
-        // Handle MongoDB duplicate key error
+        //Handle MongoDB duplicate key error
         if (error.code === 11000 && error.keyPattern && error.keyValue) {
             return res.status(400).json({
                 success: false,
