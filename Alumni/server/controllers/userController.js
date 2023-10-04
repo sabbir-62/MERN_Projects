@@ -90,15 +90,24 @@ exports.userLogin = async(req, res) => {
         
 
         const existingUser = await User.findOne({email});
+
         const matchPassword = await bcrypt.compare(password, existingUser.password);
 
 
         if(!matchPassword){
             return res.status(404).json({
                 success: false,
-                message: 'Invalid Credential'
+                message: 'Something went wrong! Please fill valid email and password'
             })
         }
+
+        else{
+            return res.status(200).json({
+                success: true,
+                message: 'Login Success'
+            })
+        }
+
 
         res.cookie("jsontoken", existingUser.token, {
             httpOnly: true
@@ -109,9 +118,9 @@ exports.userLogin = async(req, res) => {
         })
     }
     catch(err){
-        res.status(500).json({
+        res.status(404).json({
             success: false,
-            message: 'Internal server problem'
+            message: 'Something went wrong! Please fill valid email and password'
         })
     }
 }

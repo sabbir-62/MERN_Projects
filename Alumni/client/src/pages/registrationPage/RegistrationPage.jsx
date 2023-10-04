@@ -1,7 +1,7 @@
 // import section
 import './registration.css'
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate  } from 'react-router-dom';
 
 
 
@@ -15,6 +15,8 @@ const RegistrationPage = () => {
         password: "",
         confirmPassword: ""
     })
+
+    const navigate = useNavigate(); // Call useNavigate as a function
 
     // set state value
     const setValues = (key, value) => {
@@ -45,10 +47,13 @@ const RegistrationPage = () => {
        .then((response) => response.json())
        .then((data) => {
             if(data.message){
-                console.log(data.message)
+                alert(data.message);
+                if(data.success == true){
+                    navigate('/');
+                }
             }
             else{
-                console.log("no message")
+                alert("Something went wrong!")
             }
        })
        .catch((error) => {
