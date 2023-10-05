@@ -1,5 +1,8 @@
+
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
 
 
@@ -53,6 +56,7 @@ exports.userRegistration = async(req, res) => {
         }
         else{
             return res.status(201).json({
+                data:user,
                 success: true,
                 message: "Data save successfully"
             })
@@ -101,21 +105,20 @@ exports.userLogin = async(req, res) => {
             })
         }
 
-        else{
+        else{ 
+            res.cookie("token", existingUser.token, {
+                httpOnly: true,
+                path: '/',
+                domain: "localhost",
+                secure: true,
+                sameSite: "none" // Set SameSite attribute to "None"
+            });
             return res.status(200).json({
+                data: existingUser,
                 success: true,
                 message: 'Login Success'
             })
         }
-
-
-        res.cookie("jsontoken", existingUser.token, {
-            httpOnly: true
-        })
-        return res.status(200).json({
-            success: true,
-            message: existingUser
-        })
     }
     catch(err){
         res.status(404).json({
@@ -123,4 +126,15 @@ exports.userLogin = async(req, res) => {
             message: 'Something went wrong! Please fill valid email and password'
         })
     }
+}
+
+
+exports.about = (req, res) => {
+    const token = req.cookies.token;
+
+    const result = jwt.verify(token, process.env.SECRETEKEY)
+
+    return res.status(200).json({
+       result
+    })
 }

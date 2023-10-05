@@ -1,6 +1,21 @@
+import { useEffect } from 'react';
 import './aboutPage.css'
 
 const AboutPage = () => {
+
+    const callAboutPage = async() => {
+        const url = "http://localhost:8000/api/v1/about";
+
+        // post data using fetch api
+        const res  = await (await fetch(url)).json()
+       console.log(res.result)
+    }
+
+
+    useEffect(() => {
+        callAboutPage();
+    },[])
+
     return (
         <div className="container about">
             <div className="row about-card">

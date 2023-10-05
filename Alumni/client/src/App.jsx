@@ -9,8 +9,19 @@ import ContactPage from './pages/contactPage/ContactPage';
 import LoginPage from './pages/loginPage/LoginPage';
 import RegistrationPage from './pages/registrationPage/RegistrationPage';
 import ErrorPage from './pages/errorPage/ErrorPage'
+import { useState } from 'react';
+
 
 function App() {
+
+  const [token, setToken] = useState(null)
+
+  const getToken = (data) => {
+    setToken({
+      token : data
+    })
+    console.log("app", typeof(token))
+  }
   return (
    <Router>
     <Navbar />
@@ -18,7 +29,7 @@ function App() {
       <Route exact path='/' element={<HomePage />}></Route>
       <Route exact path='/about' element={<AboutPage />}></Route>
       <Route exact path='/contact' element={<ContactPage />}></Route>
-      <Route exact path='/login' element={<LoginPage />}></Route>
+      <Route exact path='/login' element={<LoginPage getToken={getToken}/>}></Route>
       <Route exact path='/registration' element={<RegistrationPage />}></Route>
       <Route exact path='*' element={<ErrorPage />}></Route>
     </Routes>

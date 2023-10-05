@@ -84,27 +84,27 @@ const RegistrationPage = () => {
                 <form className="registration-form" method='POST' onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name"></label>
-                        <input type="text" name="name" className='input-field' autoComplete='off' value={state.name} onChange={(e) => {setValues("name", e.target.value)}} placeholder="Enter Your Name"/>
+                        <input type="text" name="name" id='name' className='input-field' autoComplete='off' value={state.name} onChange={(e) => {setValues("name", e.target.value)}} placeholder="Enter Your Name"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="email"></label>
-                        <input type="text" name= "email" className='input-field' autoComplete='off' value={state.email} onChange={(e) => {setValues("email", e.target.value)}} placeholder="Enter Your Email"/>
+                        <input type="text" name= "email" id='email' className='input-field' autoComplete='off' value={state.email} onChange={(e) => {setValues("email", e.target.value)}} placeholder="Enter Your Email"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="phone"></label>
-                        <input type="tel" name='phone' className='input-field' autoComplete='off' value={state.phone} onChange={(e) => {setValues("phone", e.target.value)}} placeholder="Enter Your Mobile Number"/>
+                        <input type="tel" name='phone' id='phone' className='input-field' autoComplete='off' value={state.phone} onChange={(e) => {setValues("phone", e.target.value)}} placeholder="Enter Your Mobile Number"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="role"></label>
-                        <input type="text" name='role' className='input-field' autoComplete='off' value={state.role} onChange={(e) => {setValues("role", e.target.value)}} placeholder="Enter Your Role"/>
+                        <input type="text" name='role' id='role' className='input-field' autoComplete='off' value={state.role} onChange={(e) => {setValues("role", e.target.value)}} placeholder="Enter Your Role"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password"></label>
-                        <input type="text" name='password' className='input-field' autoComplete='off' value={state.password} onChange={(e) => {setValues("password", e.target.value)}} placeholder="Enter Your Password"/>
+                        <input type="text" name='password' id='password' className='input-field' autoComplete='off' value={state.password} onChange={(e) => {setValues("password", e.target.value)}} placeholder="Enter Your Password"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cpassword"></label>
-                        <input type="text" name='confirmPassword' className='input-field' autoComplete='off' value={state.confirmPassword} onChange={(e) => {setValues("confirmPassword", e.target.value)}} placeholder="Enter Your Confirm Password"/>
+                        <label htmlFor="confirmPassword"></label>
+                        <input type="text" name='confirmPassword' id='confirmPassword' className='input-field' autoComplete='off' value={state.confirmPassword} onChange={(e) => {setValues("confirmPassword", e.target.value)}} placeholder="Enter Your Confirm Password"/>
                     </div>
                     <div className="form-group">
                         <div className="button">

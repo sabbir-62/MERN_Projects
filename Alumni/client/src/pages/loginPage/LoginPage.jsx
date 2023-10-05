@@ -2,7 +2,7 @@ import './login.css';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginPage = (token) => {
     const [state, setState] = useState({
         email: "",
         password: ""
@@ -31,15 +31,17 @@ const LoginPage = () => {
             },
             body: JSON.stringify({
                 email, password
-            })
+            }),
         })
        .then((response) => response.json())
        .then((data) => {
             if(data.message){
                 alert(data.message);
-                if(data.success == true){
-                    navigate('/');
-                }
+                 if(data.success == true){
+                     token.getToken(data.data.token)
+                     console.log("login", data.data.token);
+                     navigate('/');
+                 }
             }
             else{
                 console.log("Something went wrong!")
@@ -61,11 +63,11 @@ const LoginPage = () => {
                 <form className="login-form" method='POST' onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email"></label>
-                        <input type="text" className='input-field' autoComplete='off' value={state.email} onChange={(e) => {setValue("email", e.target.value)}} placeholder="Enter Your Email"/>
+                        <input type="text" className='input-field' name='email' id='email' autoComplete='off' value={state.email} onChange={(e) => {setValue("email", e.target.value)}} placeholder="Enter Your Email"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password"></label>
-                        <input type="text" className='input-field' autoComplete='off' value={state.password} onChange={(e) => {setValue("password", e.target.value)}} placeholder="Enter Your Password"/>
+                        <input type="text" className='input-field' name='password' id='password' autoComplete='off' value={state.password} onChange={(e) => {setValue("password", e.target.value)}} placeholder="Enter Your Password"/>
                     </div>
                     <div className="form-group">
                         <div className="button">
