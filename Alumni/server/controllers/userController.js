@@ -82,51 +82,97 @@ exports.userRegistration = async(req, res) => {
 
 
 //user login
-exports.userLogin = async(req, res) => {
-    const {email, password} = req.body;
-    try{
-        if(!email || !password){
+// exports.userLogin = async(req, res) => {
+//     const {email, password} = req.body;
+//     try{
+//         if(!email || !password){
+//             return res.status(400).json({
+//                 success: false,
+//                 message: 'Email and Password are required'
+//             })
+//         }
+        
+
+//         const existingUser = await User.findOne({email});
+
+//         const matchPassword = await bcrypt.compare(password, existingUser.password);
+
+
+//         if(!matchPassword){
+//             return res.status(404).json({
+//                 success: false,
+//                 message: 'Something went wrong! Please fill valid email and password'
+//             })
+//         }
+
+//         else{ 
+//             res.cookie("token", existingUser.token, {
+//                 httpOnly: true,
+//                 path: '/',
+//                 domain: "localhost",
+//                 secure: true,
+//                 sameSite: "none" // Set SameSite attribute to "None"
+//             });
+//             return res.status(200).json({
+//                 data: existingUser,
+//                 success: true,
+//                 message: 'Login Success'
+//             })
+//         }
+//     }
+//     catch(err){
+//         res.status(404).json({
+//             success: false,
+//             message: 'Something went wrong! Please fill valid email and password'
+//         })
+//     }
+// }
+
+exports.userLogin = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        if (!email || !password) {
             return res.status(400).json({
                 success: false,
                 message: 'Email and Password are required'
-            })
+            });
         }
-        
 
-        const existingUser = await User.findOne({email});
+        const existingUser = await User.findOne({ email });
 
         const matchPassword = await bcrypt.compare(password, existingUser.password);
 
-
-        if(!matchPassword){
+        if (!matchPassword) {
             return res.status(404).json({
                 success: false,
                 message: 'Something went wrong! Please fill valid email and password'
-            })
-        }
-
-        else{ 
+            });
+        } else {
+            // Set the cookie with the necessary attributes
             res.cookie("token", existingUser.token, {
                 httpOnly: true,
-                path: '/',
-                domain: "localhost",
-                secure: true,
-                sameSite: "none" // Set SameSite attribute to "None"
+                secure: true, // Use HTTPS in production
+                sameSite: "none", // Required for cross-site cookies
+                path: '/', // Adjust this path as needed
+                domain: 'localhost', // Set the correct domain
             });
+
             return res.status(200).json({
                 data: existingUser,
                 success: true,
                 message: 'Login Success'
-            })
+            });
         }
-    }
-    catch(err){
+    } catch (err) {
         res.status(404).json({
             success: false,
             message: 'Something went wrong! Please fill valid email and password'
-        })
+        });
     }
-}
+};
+
+
+
 
 
 exports.about = (req, res) => {
