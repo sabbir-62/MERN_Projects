@@ -1,12 +1,16 @@
 import './login.css';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
+//import { useCookies } from 'react-cookie'
 
-const LoginPage = (token) => {
+const LoginPage = () => {
     const [state, setState] = useState({
         email: "",
         password: ""
     });
+
+    //  const [cookies, setCookie] = useCookies(['user']);
 
     const navigate = useNavigate(); // Call useNavigate as a function
 
@@ -16,6 +20,7 @@ const LoginPage = (token) => {
             [key] : value
         })
     }
+   
     const handleSubmit = async(e) => {
         e.preventDefault();
         const {email, password} = state;
@@ -37,14 +42,17 @@ const LoginPage = (token) => {
        .then((data) => {
             if(data.message){
                 alert(data.message);
+                console.log(data)
+                
+                //console.log(data.data)
                  if(data.success == true){
-                     token.getToken(data.data.token)
-                     console.log("login", data.data.token);
+                    Cookies.set("myCookie", data.data);
+                     //console.log("login", data.data);
                      navigate('/');
                  }
             }
             else{
-                console.log("Something went wrong!")
+                alert("Something went wrong!")
             }
        })
        .catch((error) => {

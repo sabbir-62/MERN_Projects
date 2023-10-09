@@ -1,14 +1,49 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Cookies from "js-cookie";
 import './aboutPage.css'
 
 const AboutPage = () => {
 
-    const callAboutPage = async() => {
-        const url = "http://localhost:8000/api/v1/about";
+    const [state, setState] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        role: ""
+    })
 
+    const callAboutPage = async() => {
+        const cookie = await Cookies.get("myCookie");
+        const url = "http://localhost:8000/api/v1/about";
         // post data using fetch api
-        const res  = await (await fetch(url)).json()
-       console.log(res.result)
+        await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+               cookie
+            }),
+           
+        })
+       .then((response) => response.json())
+       .then((data) => {
+            if(data.message){
+                setState({
+                    name:data.user.name,
+                    email: data.user.email,
+                    phone: data.user.phone,
+                    role: data.user.role
+                })
+            }
+            else{
+                alert("Something went wrong!")
+            }
+       })
+       .catch((error) => {
+        console.log(error)
+       })
+      
+      
     }
 
 
@@ -20,7 +55,7 @@ const AboutPage = () => {
         <div className="container about">
             <div className="row about-card">
                 <div className="heading">
-                    <h1>Md Sabbir Hossain</h1>
+                    <h1>{state.name}</h1>
                 </div>
                 <div className="row">
                     <div className="col-md-6">
@@ -42,16 +77,16 @@ const AboutPage = () => {
                     <div className="col-md-6">
                         <ul>
                             <li>
-                                Sabbir Hossain
+                                {state.name}
                             </li>
                             <li>
-                                sabbirhstuece@gmail.com
+                                {state.email}
                             </li>
                             <li>
-                                01729892494
+                                {state.phone}
                             </li>
                             <li>
-                                Full Stack Web Developer
+                                {state.role}
                             </li>
                         </ul>
                     </div>

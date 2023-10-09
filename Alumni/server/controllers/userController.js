@@ -145,20 +145,14 @@ exports.userLogin = async (req, res) => {
         if (!matchPassword) {
             return res.status(404).json({
                 success: false,
-                message: 'Something went wrong! Please fill valid email and password'
+                message: 'Something went wrong! Please fill valid email and passwordd'
             });
         } else {
             // Set the cookie with the necessary attributes
-            res.cookie("token", existingUser.token, {
-                httpOnly: true,
-                secure: true, // Use HTTPS in production
-                sameSite: "none", // Required for cross-site cookies
-                path: '/', // Adjust this path as needed
-                domain: 'localhost', // Set the correct domain
-            });
+            //res.cookie("hasib", existingUser.token);
 
             return res.status(200).json({
-                data: existingUser,
+                data: existingUser.token,
                 success: true,
                 message: 'Login Success'
             });
@@ -175,12 +169,14 @@ exports.userLogin = async (req, res) => {
 
 
 
-exports.about = (req, res) => {
-    const token = req.cookies.token;
+exports.about = async(req, res) => {
+    const token = req.body.cookie;
 
-    const result = jwt.verify(token, process.env.SECRETEKEY)
-
+    const existingUser = await User.findOne({ token });
     return res.status(200).json({
-       result
+        success: true,
+        message: "about success",
+        myCookie: token,
+        user: existingUser
     })
 }
