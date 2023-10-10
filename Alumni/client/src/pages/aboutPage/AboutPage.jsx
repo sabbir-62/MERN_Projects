@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
 import Cookies from "js-cookie";
 import './aboutPage.css'
 
@@ -11,8 +12,10 @@ const AboutPage = () => {
         role: ""
     })
 
+    const navigate = useNavigate(); // Call useNavigate as a function
+
     const callAboutPage = async() => {
-        const cookie = await Cookies.get("myCookie");
+        const cookie = Cookies.get("myCookie");
         const url = "http://localhost:8000/api/v1/about";
         // post data using fetch api
         await fetch(url, {
@@ -27,7 +30,11 @@ const AboutPage = () => {
         })
        .then((response) => response.json())
        .then((data) => {
-            if(data.message){
+            if(!data.success){
+                alert(data.message)
+                navigate('/login');
+            }
+            else{
                 setState({
                     name:data.user.name,
                     email: data.user.email,
@@ -35,12 +42,12 @@ const AboutPage = () => {
                     role: data.user.role
                 })
             }
-            else{
-                alert("Something went wrong!")
-            }
+           
        })
        .catch((error) => {
-        console.log(error)
+            console.log(error)
+            //alert("No user logged in")
+            navigate('/login');
        })
       
       
@@ -49,7 +56,7 @@ const AboutPage = () => {
 
     useEffect(() => {
         callAboutPage();
-    },[])
+    })
 
     return (
         <div className="container about">

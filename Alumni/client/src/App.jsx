@@ -9,6 +9,7 @@ import ContactPage from './pages/contactPage/ContactPage';
 import LoginPage from './pages/loginPage/LoginPage';
 import RegistrationPage from './pages/registrationPage/RegistrationPage';
 import ErrorPage from './pages/errorPage/ErrorPage'
+import Logout from './pages/logoutPage/Logout';
 
 
 
@@ -22,6 +23,7 @@ function App() {
       <Route exact path='/contact' element={<ContactPage />}></Route>
       <Route exact path='/login' element={<LoginPage />}></Route>
       <Route exact path='/registration' element={<RegistrationPage />}></Route>
+      <Route exact path='/logout' element={<Logout />}></Route>
       <Route exact path='*' element={<ErrorPage />}></Route>
     </Routes>
    </Router>

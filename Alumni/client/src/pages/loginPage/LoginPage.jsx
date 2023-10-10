@@ -42,7 +42,6 @@ const LoginPage = () => {
        .then((data) => {
             if(data.message){
                 alert(data.message);
-                console.log(data)
                 
                 //console.log(data.data)
                  if(data.success == true){

@@ -168,15 +168,31 @@ exports.userLogin = async (req, res) => {
 
 
 
-
+// About
 exports.about = async(req, res) => {
     const token = req.body.cookie;
-
-    const existingUser = await User.findOne({ token });
-    return res.status(200).json({
-        success: true,
-        message: "about success",
-        myCookie: token,
-        user: existingUser
-    })
+    try{
+        
+        const existingUser = await User.findOne({ token });
+        if(existingUser){
+            return res.status(200).json({
+                success: true,
+                message: "about success",
+                myCookie: token,
+                user: existingUser
+        })
+    }
+    else{
+        return res.status(404).json({
+            success: false,
+            message: "Please login"
+        })
+    }
+    }
+    catch (err) {
+        return res.status(404).json({
+            success: false,
+            message: 'Please login'
+        });
+    }
 }
