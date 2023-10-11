@@ -1,7 +1,7 @@
 import './login.css';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Cookies from "js-cookie";
+import Cookies from "js-cookie"; 
 //import { useCookies } from 'react-cookie'
 
 const LoginPage = () => {
@@ -65,6 +65,7 @@ const LoginPage = () => {
       });
     }
     return (
+        <>
         <div className="registration">
             <div className="container login">
                 <form className="login-form" method='POST' onSubmit={handleSubmit}>
@@ -88,6 +89,7 @@ const LoginPage = () => {
                 </form>
             </div>
         </div>
+        </>
     );
 };
 

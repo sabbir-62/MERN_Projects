@@ -1,8 +1,7 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './components/navbar/Navbar'
 import HomePage from './pages/homePage/HomePage';
 import AboutPage from './pages/aboutPage/AboutPage';
 import ContactPage from './pages/contactPage/ContactPage';
@@ -13,10 +12,12 @@ import Logout from './pages/logoutPage/Logout';
 
 
 
+
+
+
 function App() {
   return (
-   <Router>
-    <Navbar />
+   <>
     <Routes>
       <Route exact path='/' element={<HomePage />}></Route>
       <Route exact path='/about' element={<AboutPage />}></Route>
@@ -26,7 +27,7 @@ function App() {
       <Route exact path='/logout' element={<Logout />}></Route>
       <Route exact path='*' element={<ErrorPage />}></Route>
     </Routes>
-   </Router>
+   </>
   )     
 }
 

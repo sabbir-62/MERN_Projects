@@ -1,11 +1,16 @@
 //import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { CookiesProvider } from "react-cookie";
+import { BrowserRouter} from 'react-router-dom';
 import App from './App.jsx'
 import './index.css'
+import Navbar from './components/navbar/Navbar.jsx';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <CookiesProvider>
+  <BrowserRouter>
+      <>
+      <Navbar />
       <App />
-   </CookiesProvider>,
+      </>
+   </BrowserRouter>,
 )
